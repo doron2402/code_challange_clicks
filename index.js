@@ -1,4 +1,5 @@
-var currentNum = 33;
+var currentNum = 33,
+	badPath = 66;
 
 function returnInt(numString, index){
     return parseInt(numString.toString().charAt(index),10);
@@ -41,12 +42,54 @@ var getStep = function(num) {
 			}
 		}
 
+		if (!checkIfPathIsSafe(path[i],returnInt(badPath,i))){
+			//try another path
+			console.log('try new path');
+			tryDifferentPath(path[i]);
+		}
+
 		console.log('clicks: ' +  tmpNum);
 		console.log(path);
 		arrClick.push(tmpNum);
 	}
 
 	return arrClick;
+}
+
+
+function checkIfPathIsSafe(path, badNum){
+	if (path.indexOf(badNum) > -1){
+
+		console.log('not safe');
+		return false;
+	}
+	else{
+
+		console.log('safe');
+		return true;
+	}
+}
+
+function tryDifferentPath(path){
+	var firstEl = path[0],
+		lastEl = path[path.length-1],
+		newPath = [];
+
+	if ( (path[1] - path[0]) > 0) {
+		for (var i = firstEl; i < (lastEl + 10); i++) {
+			newPath.push((i % 10));
+		};
+	}
+	else { 
+		for (var i = firstEl; i < path.length; i++) {
+			newPath.push(i);
+		};
+	}
+
+	console.log(newPath);
+	return newPath;
+
+
 }
 
 getStep(33); // 0
