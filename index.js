@@ -5,6 +5,10 @@ function returnInt(numString, index){
     return parseInt(numString.toString().charAt(index),10);
 }
 
+function checkIfDestinationIsSafe(num, index){
+	if (num == returnInt(badPath,index))
+		return false;
+}
 
 var getStep = function(num) {
 	
@@ -12,8 +16,15 @@ var getStep = function(num) {
 		path = [], 
 		i;
 	
+	
+
 	for (i=0; i< num.toString().length; i++){
 		
+		if (!checkIfDestinationIsSafe(num,i)){
+			throw 'Can\'t go there!';
+		}
+
+
 		var tmpNum = 0;
         path[i] = [];
 		if ( returnInt(currentNum,i) == returnInt(num,i) )
