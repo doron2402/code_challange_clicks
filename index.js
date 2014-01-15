@@ -37,8 +37,7 @@ var getStep = function(num) {
                 else{
                     returnInt(num,i) + j >= 10 ? path[i].push(returnInt(num,i) + j -10)  : path[i].push(returnInt(num,i) + j);
                 }
-                     
-					;
+                    
 			}
 		}
 
